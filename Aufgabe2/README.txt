@@ -1,1 +1,1 @@
-GrayscaleShader kann auf CubeMaterial und PlaneMaterial gezogen werden, dabei wird die zugewiesene Farbe in einen Grauwert umberechnet.
+GrayscaleShader kann auf CubeMaterial, PlaneMaterial und TeapotMaterial gezogen werden, dabei wird die zugewiesene Farbe in einen Grauwert umberechnet.
