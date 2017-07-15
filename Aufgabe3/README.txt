@@ -1,0 +1,1 @@
+Der "DepthShader" ist bereits mit allen Models verknüpft. Beim Zoomen innerhalb der Szene verändern sich je nach Entfernung die Grauwerte.
