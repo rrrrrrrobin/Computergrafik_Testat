@@ -16,6 +16,23 @@
 			#pragma fragment frag
 			// make depth-grayscale work
 			
+			struct vertex
+			{
+				float4 vertex : POSITION;
+			};
+
+			struct transformation
+			{
+				float4 worldPosition : TEXCOORD0;
+				float4 coordPosition : SV_POSITION;
+			};
+
+			transformation vertex()
+			{
+
+			}
+
+
 			ENDCG
 		}
 	}
