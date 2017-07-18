@@ -1,0 +1,1 @@
+Wird die Szene gestartet, lässt sich die "Camera" mittels den Pfeiltasten oder mit den Gaming-Tasten (W, A, S, D) steuern und es lässt sich mittels Mausbewegungen umschauen.
