@@ -37,13 +37,12 @@
 			// Albedo comes from a texture tinted by color
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 			fixed4 grayscaleColor = c;									// define grayscaleColor
-			grayscaleColor.r = (c.r + c.g + c.b) / 3;					// using maths for red, green and blue to create a grayscale value
+			grayscaleColor.r = (c.r + c.g + c.b) / 3;					// using maths for color values (red, green, blue) to create a grayscale value
 			grayscaleColor.g = grayscaleColor.r;
 			grayscaleColor.b = grayscaleColor.r;
 			c = grayscaleColor;
 			
 			// Metallic and smoothness come from slider variables
-			//o.Albedo = dot(c.rgb, float3(0.22, 0.707, 0.071));	//static values (old version)
 			o.Albedo = c.rgb;
 			o.Metallic = _Metallic;
 			o.Smoothness = _Glossiness;
