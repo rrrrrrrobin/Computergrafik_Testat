@@ -38,11 +38,17 @@
 
 			float4 frag(transformation data) : COLOR // Inspired by "Chess Example" from https://docs.unity3d.com/430/Documentation/Components/SL-VertexFragmentShaderExamples.html 
 			{
-				float maxAllowedDistance = 20; 
-				float actualDistance = distance(data.worldPosition, _WorldSpaceCameraPos);
-				float normedVector = (actualDistance / maxAllowedDistance);
+				float maxAllowedDistance = 20; // Adjusted the max. allowed distance
+				float3 actualDistance = distance(data.worldPosition, _WorldSpaceCameraPos);
+				float distance = -actualDistance.z; // Negative z-axis
+				float normedVector = (distance / maxAllowedDistance);
 
-				return float4(normedVector, normedVector, normedVector, 1.0);
+				if (normedVector < 0) // Only values between 0 (black) and 1 (white) allowed
+				{
+					normedVector = normedVector * (-1);
+				}
+
+				return float4(normedVector, normedVector, normedVector, 1.0); // Return grayscale value
 			}
 			ENDCG
 		}
