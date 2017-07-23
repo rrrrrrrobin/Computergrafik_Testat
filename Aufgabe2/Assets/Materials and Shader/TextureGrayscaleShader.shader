@@ -1,12 +1,11 @@
-﻿Shader "Unlit/TextureGrayscaleShader"
+﻿Shader "Unlit/TextureShader"
 {
 
 	// Tutorial - Vertex und Fragment Shader examples: https://docs.unity3d.com/Manual/SL-VertexFragmentShaderExamples.html 
 
 	Properties
 	{
-		_MainTex("Color Texture", 2D) = "white" {}
-	_BumpMap("Bump Map", 2D) = "bump" {}
+		_MainTex("Texture", 2D) = "white" {}
 	}
 		SubShader
 	{
@@ -18,11 +17,10 @@
 		CGPROGRAM
 
 		// Definition über die Shader die verwendet werden, und wie sie heißen
-#pragma vertex vert
-#pragma fragment frag
+		#pragma vertex vert
+		#pragma fragment frag
 
-#include "UnityCG.cginc"			
-#include "Lighting.cginc" // für Lighting
+		#include "UnityCG.cginc"
 
 		// Struct zum Austausch der Daten zwischen Vertex und Fragment Shader
 		struct v2f
@@ -32,13 +30,10 @@
 
 		// Weitergabe der Textur Koordinaten
 		float2 uv : TEXCOORD0;
-
-
 	};
 
 	// Zu verwendende Textur
 	sampler2D _MainTex;
-	sampler2D _BumpMap;
 
 	// VERTEX SHADER
 	// 'appdata_base' ist ein standard struct das genutzt werden kann um den Vertex Shader mit Daten zu füttern
@@ -69,23 +64,11 @@
 		// Greife den pixel der Textur an der Stelle (u;v) ab und setze ihn als Farbe.
 		fixed4 color = tex2D(_MainTex, fragIn.uv);
 
-	// Berechnen der Normalenvektoren im Welt-Koordinatensystem gegeben der Bumpmap.
-	half3 worldNormal = UnpackNormal(tex2D(_BumpMap, fragIn.uv));
-	//worldNormal = UnityObjectToWorldNormal(worldNormal);
-
-	// Standard Diffuse (Lambert) Shading
-	// Gewichtung durch Skalarprodukt (Dot-Produkt) zwischen Normalen-Vektor
-	// Richtung der Beleuchtungsquelle
-	half nl = max(0, dot(-worldNormal, _WorldSpaceLightPos0.xyz));
-
-	// Diffuser Anteil multipliziert mit der Lichtfarbe
-	color *= nl * _LightColor0;
-
-	fixed4 grayscaleColor = color;	// define grayscaleColor
-	grayscaleColor.r = (color.r + color.g + color.b) / 3;	// using maths for color values (red, green, blue) to create a grayscale value
-	grayscaleColor.g = grayscaleColor.r;
-	grayscaleColor.b = grayscaleColor.r;
-	color = grayscaleColor;
+		fixed4 grayscaleColor = color;	// define grayscaleColor
+		grayscaleColor.r = (color.r + color.g + color.b) / 3;	// using maths for color values (red, green, blue) to create a grayscale value
+		grayscaleColor.g = grayscaleColor.r;
+		grayscaleColor.b = grayscaleColor.r;
+		color = grayscaleColor;
 
 	return color;
 	}

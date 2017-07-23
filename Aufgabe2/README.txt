@@ -1,1 +1,6 @@
-"GrayscaleShader" wurde auf "CubeMaterial", "PlaneMaterial" und "TeapotMaterial" angewendet. Die Farben der Models können geändert werden, dabei wird in Echtzeit der Grauwert neu berechnet.
+"GrayscaleShader" wurde auf "NormalTeapot", "Cube" und "Plane" angewendet.
+"LambertGrayscaleShader" wurde auf "LambertTeapot" angewendet.
+"PhongGrayscaleShader" wurde auf "PhongTeapot" angewendet.
+"TextureGrayscaleShader wurde auf "TextureTeapot" angewendet.
+
+Die Farben der Models können geändert werden, dabei werden in Echtzeit die Grauwert neu berechnet.
