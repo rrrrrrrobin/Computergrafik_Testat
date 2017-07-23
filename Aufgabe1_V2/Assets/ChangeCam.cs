@@ -1,47 +1,49 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using UnityEditor;
 using System.Collections.Generic;
-using UnityEngine;
-
 
 public class ChangeCam : MonoBehaviour
 {
-    public GameObject Camera;
-    public GameObject GrayscaleCamera;
-    public GameObject DepthCamera;
-    public GameObject ThermalCamera;
+    public Material GrayscaleMaterial;
+    public Material DepthMaterial;
+    public Material ThermalMaterial;
+    public Material Red;
 
-    void Start()
-    {
-        Camera.SetActive(true);
-        GrayscaleCamera.SetActive(false);
-        DepthCamera.SetActive(false);
-        ThermalCamera.SetActive(false);
-    }
 
     void Update()
     {
-        if (Input.GetKey("0"))
-            Camera.SetActive(true);
-            GrayscaleCamera.SetActive(false);
-            DepthCamera.SetActive(false);
-            ThermalCamera.SetActive(false);
+        GameObject[] allObjects = UnityEngine.Object.FindObjectsOfType<GameObject>();   // get all objects in scene
 
-        if (Input.GetKey("1"))
-            Camera.SetActive(false);
-            GrayscaleCamera.SetActive(true);
-            DepthCamera.SetActive(false);
-            ThermalCamera.SetActive(false);
+        if (Input.GetKeyDown(KeyCode.Alpha0))   // press "0" for normal mode
+        {
+            foreach (var obj in allObjects)
+            {
+                obj.GetComponent<Renderer>().sharedMaterial = Red;
+            }
+        }
 
-        if (Input.GetKey("2"))
-            Camera.SetActive(false);
-            GrayscaleCamera.SetActive(false);
-            DepthCamera.SetActive(true);
-            ThermalCamera.SetActive(false);
+        if (Input.GetKeyDown(KeyCode.Alpha1))   // press "1" for grayscale shader
+        {
+            foreach (var obj in allObjects)
+            {
+                obj.GetComponent<Renderer>().sharedMaterial = GrayscaleMaterial;
+            }
+        }
 
-        if (Input.GetKey("3"))
-            Camera.SetActive(false);
-            GrayscaleCamera.SetActive(false);
-            DepthCamera.SetActive(false);
-            ThermalCamera.SetActive(true);
+        if (Input.GetKeyDown(KeyCode.Alpha2))   // press "2" for depth shader
+        {
+            foreach (var obj in allObjects)
+            {
+                obj.GetComponent<Renderer>().sharedMaterial = DepthMaterial;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))   // press "3" for thermal shader
+        {
+            foreach (var obj in allObjects)
+            {
+                obj.GetComponent<Renderer>().sharedMaterial = ThermalMaterial;
+            }
+        }
     }
 }
