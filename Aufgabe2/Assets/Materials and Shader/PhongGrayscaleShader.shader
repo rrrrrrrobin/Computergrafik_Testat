@@ -20,7 +20,6 @@ Shader "Unlit/PhongGrayscaleShader"
 
 		// Shininess
 		_Shininess("Shininess", Range(0.1, 1000)) = 100
-
 	}
 		SubShader
 	{
@@ -38,11 +37,11 @@ Shader "Unlit/PhongGrayscaleShader"
 		CGPROGRAM
 
 		// Definition über die Shader die verwendet werden, und wie sie heißen
-#pragma vertex vert
-#pragma fragment frag
+		#pragma vertex vert
+		#pragma fragment frag
 
-#include "UnityCG.cginc"
-#include "Lighting.cginc" // für Lighting
+		#include "UnityCG.cginc"
+		#include "Lighting.cginc" // für Lighting
 
 		// Struct zum Austausch der Daten zwischen Vertex und Fragment Shader
 		struct v2f
@@ -60,10 +59,10 @@ Shader "Unlit/PhongGrayscaleShader"
 		float4 spec : COLOR2;
 	};
 
-	// Zu verwendende Farbe
-	fixed4 _Color;
-	float _Ka, _Kd, _Ks;
-	float _Shininess;
+		// Zu verwendende Farbe
+		fixed4 _Color;
+		float _Ka, _Kd, _Ks;
+		float _Shininess;
 
 	// VERTEX SHADER
 	// 'appdata_base' ist ein standard struct das genutzt werden kann um den Vertex Shader mit Daten zu füttern
@@ -117,10 +116,16 @@ Shader "Unlit/PhongGrayscaleShader"
 		// Greife den pixel der Textur an der Stelle (u;v) ab und setze ihn als Farbe.
 		fixed4 color = _Color;
 
-	// Multiplikation der Grundfarbe mit dem Ambienten- und dem Diffusions-Anteil
-	// Der Diffuse und Ambiente Anteil wird jeweils mit der entsprechenden Reflektanz der Oberfläche (_Ka, _Kd) gewichtet.
-	color *= _Ka*fragIn.amb + _Kd*fragIn.diff;
-	color += _Ks*fragIn.spec;
+		// Multiplikation der Grundfarbe mit dem Ambienten- und dem Diffusions-Anteil
+		// Der Diffuse und Ambiente Anteil wird jeweils mit der entsprechenden Reflektanz der Oberfläche (_Ka, _Kd) gewichtet.
+		color *= _Ka*fragIn.amb + _Kd*fragIn.diff;
+		color += _Ks*fragIn.spec;
+
+		fixed4 grayscaleColor = color;	// define grayscaleColor
+		grayscaleColor.r = (color.r + color.g + color.b) / 3;	// using maths for color values (red, green, blue) to create a grayscale value
+		grayscaleColor.g = grayscaleColor.r;
+		grayscaleColor.b = grayscaleColor.r;
+		color = grayscaleColor;
 
 	return saturate(color);
 	}

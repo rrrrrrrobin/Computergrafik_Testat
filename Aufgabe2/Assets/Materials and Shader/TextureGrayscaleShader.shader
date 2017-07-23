@@ -81,6 +81,12 @@
 	// Diffuser Anteil multipliziert mit der Lichtfarbe
 	color *= nl * _LightColor0;
 
+	fixed4 grayscaleColor = color;	// define grayscaleColor
+	grayscaleColor.r = (color.r + color.g + color.b) / 3;	// using maths for color values (red, green, blue) to create a grayscale value
+	grayscaleColor.g = grayscaleColor.r;
+	grayscaleColor.b = grayscaleColor.r;
+	color = grayscaleColor;
+
 	return color;
 	}
 		ENDCG

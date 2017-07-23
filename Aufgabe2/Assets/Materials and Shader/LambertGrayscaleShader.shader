@@ -98,11 +98,17 @@
 		// Greife den pixel der Textur an der Stelle (u;v) ab und setze ihn als Farbe.
 		fixed4 color = _Color;
 
-	// Multiplikation der Grundfarbe mit dem Ambienten- und dem Diffusions-Anteil
-	// Der Diffuse und Ambiente Anteil wird jeweils mit der entsprechenden Reflektanz der Oberfläche (_Ka, _Kd) gewichtet.
-	color *= (_Ka*fragIn.amb + _Kd*fragIn.diff);
+		// Multiplikation der Grundfarbe mit dem Ambienten- und dem Diffusions-Anteil
+		// Der Diffuse und Ambiente Anteil wird jeweils mit der entsprechenden Reflektanz der Oberfläche (_Ka, _Kd) gewichtet.
+		color *= (_Ka*fragIn.amb + _Kd*fragIn.diff);
 
-	return color;
+		fixed4 grayscaleColor = color;	// define grayscaleColor
+		grayscaleColor.r = (color.r + color.g + color.b) / 3;	// using maths for color values (red, green, blue) to create a grayscale value
+		grayscaleColor.g = grayscaleColor.r;
+		grayscaleColor.b = grayscaleColor.r;
+		color = grayscaleColor;
+
+		return color;
 	}
 		ENDCG
 	}
