@@ -11,8 +11,9 @@ public class Temperature : MonoBehaviour {
     float volume;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start () { //define default values on start
+        radius = 5;
+        temp = 100;
 	}
 	
 	// Update is called once per frame

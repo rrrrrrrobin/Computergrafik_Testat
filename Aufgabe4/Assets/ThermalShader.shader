@@ -2,8 +2,9 @@
 {
 	Properties
 	{
-		_TemperaturePosition ("TemperaturePosition", Vector) = (0, 0, 0, 0)
-
+		_TemperaturePosition("TemperaturePosition",Vector) = (0,0,0)
+		_AbsorbtionPercentage("_TemperaturePosition", float) = 0
+		_TemperatureEnergy("TemperatureEnergy", float) = 0
 	}
 		SubShader
 	{
@@ -48,7 +49,7 @@
 			//TODO
 		}
 
-		return float4(normedVector, normedVector, normedVector, 1.0); // Return grayscale value
+		return float4(normedVector, normedVector, normedVector, 1.0);
 		}
 			ENDCG
 		}
