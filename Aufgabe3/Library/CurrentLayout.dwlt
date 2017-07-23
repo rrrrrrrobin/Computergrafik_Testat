@@ -485,7 +485,7 @@ MonoBehaviour:
     height: 449
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 44010000
+    m_SelectedIDs: 
     m_LastClickedID: 0
     m_ExpandedIDs: e6fbffff00000000
     m_RenameOverlay:
@@ -571,9 +571,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: -0.10250555, y: 0.8915718, z: -0.25281692, w: -0.36149132}
   m_Size:
-    m_Target: 6.374188
+    m_Target: 5.6668296
     speed: 2
-    m_Value: 6.374188
+    m_Value: 5.6668296
   m_Ortho:
     m_Target: 0
     speed: 2
