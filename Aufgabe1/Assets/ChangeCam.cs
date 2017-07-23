@@ -7,7 +7,13 @@ public class ChangeCam : MonoBehaviour
     public Material GrayscaleMaterial;
     public Material DepthMaterial;
     public Material ThermalMaterial;
-    public Material Red;
+    public Material fiber;
+    public Material fiber_bump;
+
+    public GameObject plane;
+    public GameObject cylinder1;
+    public GameObject cylinder2;
+    public GameObject cylinder3;
 
 
     void Update()
@@ -16,10 +22,18 @@ public class ChangeCam : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha0))   // press "0" for normal mode
         {
-            foreach (var obj in allObjects)
-            {
-                obj.GetComponent<Renderer>().sharedMaterial = Red;
-            }
+            plane = GameObject.Find("Plane");
+            plane.GetComponent<Renderer>().sharedMaterial = fiber;
+
+            cylinder1 = GameObject.Find("Cylinder (1)");
+            cylinder1.GetComponent<Renderer>().sharedMaterial = fiber_bump;
+
+            cylinder2 = GameObject.Find("Cylinder (2)");
+            cylinder2.GetComponent<Renderer>().sharedMaterial = fiber_bump;
+
+            cylinder3 = GameObject.Find("Cylinder (3)");
+            cylinder3.GetComponent<Renderer>().sharedMaterial = fiber_bump;
+
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))   // press "1" for grayscale shader
